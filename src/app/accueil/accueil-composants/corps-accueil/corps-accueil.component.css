@@ -1,0 +1,62 @@
+/* ---- le corps principal ---- */
+.corps {
+    position: absolute;
+    overflow: auto;
+    top: 10%;
+    width: 80%;
+    height: 90%;
+    left: 20%;
+    background-color: #f2f2f2ea;
+
+}
+
+
+
+/* ---- la partie que souhaitez vous demander ou partager ---- */
+.corps1 {
+    position: relative;
+    margin-top: 2%;
+
+    width: 70%;
+    height: auto;
+
+    background-color: white;
+}
+
+
+
+/* ---- la partie où se trouve les questions ---- */
+.corps2 {
+    position: relative;
+    margin-top: 2%;
+
+    width: 70%;
+    height: auto;
+
+    background-color: white;
+}
+
+
+
+/* ----le bouton fermer----- */
+.close {
+    text-decoration: none;
+}
+
+
+
+/* ----le bouton ajouter une question---- */
+#ajouter-avant {
+    text-decoration: none;
+    border-radius: 50px 0px 0px 50px;
+    cursor: pointer;
+    border: 1px solid rgb(170, 166, 166);
+    color: rgb(40, 40, 41);
+}
+
+#ajouter-apres {
+    text-decoration: none;
+    border-radius: 0px 50px 50px 0px;
+    cursor: pointer;
+    border: 1px solid rgb(170, 166, 166);
+}

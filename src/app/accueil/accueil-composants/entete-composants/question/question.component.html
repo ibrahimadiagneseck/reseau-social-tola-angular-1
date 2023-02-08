@@ -1,0 +1,113 @@
+<div class="container-fluid m-0 p-0" *ngIf="utilisateur">
+
+  <!-- ********************************************* -->
+  <div class="row m-0 p-0 sticky-top">
+
+    <!-- ================================================== -->
+    <div class="col-md-12">
+      <a type="button" (click)="fermerPopup()" class="fermer"><i class="ri-close-line"></i></a>
+    </div>
+
+    <!-- ================================================== -->
+    <div class="col-md-12">
+      <div class="row">
+        <a type="button" onclick="showForm('form1')" class="question col-md-6 btn btn-link">Ajouter une
+          question</a>
+
+        <a type="button" onclick="showForm('form2')" class="publication col-md-6 btn btn-link">Créer une
+          publication</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- **************FORMULAIRE 1***************** -->
+  <form id="form1" class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="questionForm">
+
+    <!-- ----------------------------------------------------------- -->
+    <div class="form-group col-md-12 mt-3 px-0">
+
+      <div class="row m-0 p-0">
+        <div class="col-md-12 text-info" style="background-color: #f2f9ff;">
+          Conseils pour obtenir des réponses intéressantes rapidement
+          <ul>
+            <li>Vérifiez que votre question n'a pas encore été posée.</li>
+            <li>Pour votre question, privilégiez une forme courte et précise.</li>
+            <li>Vérifiez que vous n'avez pas laissé des fautes de grammaire et d'orthographe.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
+            <img
+              [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.id : ''"
+              [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" style="width: 2rem; height: 2rem;"
+              class="rounded-circle mx-2 my-2 bouton">
+          </ng-container>
+
+          <ng-template #otherTemplate>
+            <img
+              [src]="'http://localhost:8080/Fichier/'+ 'user-logo'"
+              [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" alt="user logo"
+              style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
+          </ng-template>
+
+          <i class="ri-arrow-right-s-fill fs-3  align-middle"></i>
+
+          <a class="p-1" type="button" id="public">
+            <mat-icon class="align-middle">supervised_user_circle</mat-icon>
+            Public
+            <mat-icon class="align-middle" aria-hidden="false" aria-label="Example keyboard_arrow_down icon" fontIcon="keyboard_arrow_down"></mat-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="row m-0 p-0 mt-3">
+
+        <div class="col-md-12">
+          <input formControlName="question" type="text" name="question" class="form-control" id="question"
+          formControlName="question" [ngClass]="{'is-invalid': (questionForm.get('question')?.touched ||
+          questionForm.get('question')?.dirty) && !questionForm.get('question')?.valid, 'is-valid': questionForm.get('question')?.valid}"
+            aria-describedby="questionHelp" placeholder="Commencez votre question par « Que », « Comment », « Pourquoi », etc.">
+
+          <div class="invalid-feedback">
+             <span  *ngIf="questionForm.get('question')!.invalid && questionForm.get('question')!.touched">
+              <i class="ri-error-warning-line fs-5"></i> La question est requis et doit avoir entre 4 et 255 caractères.
+            </span>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ----------------------------------------------------------- -->
+    <div class="col-md-12 mt-5 mb-3">
+
+      <div class="row m-0 p-0">
+        <hr>
+        <div class="col-md-12 d-flex justify-content-end">
+          <button  (click)="fermerPopup()" type="button" class="btn rounded-pill" style="border: 1px solid black; margin-right: 10px;">Annuler</button>
+          <button type="submit" class="btn btn-primary rounded-pill">Ajouter une question</button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+
+
+  <script>
+    function showForm(formId) {
+      var forms = document.getElementsByTagName("form");
+      for (var i = 0; i < forms.length; i++) {
+        forms[i].style.display = "none";
+      }
+      document.getElementById(formId).style.display = "block";
+    }
+  </script>
+
+</div>

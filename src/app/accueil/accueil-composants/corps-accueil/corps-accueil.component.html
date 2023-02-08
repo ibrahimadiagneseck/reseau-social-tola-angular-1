@@ -1,0 +1,154 @@
+<div class="corps" *ngIf="utilisateur && utilisateurpublications">
+
+  <div class="corps1">
+
+    <!-- ****************************************** -->
+    <div class="container">
+      <!-- ****************************************** -->
+      <div class="row">
+        <div class="col-md-1 d-flex justify-content-start p-0">
+          <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
+            <img
+              [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.id : ''"
+              [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" style="width: 2rem; height: 2rem;"
+              class="rounded-circle mx-2 my-2 bouton">
+          </ng-container>
+
+          <ng-template #otherTemplate>
+            <img
+              [src]="'http://localhost:8080/Fichier/'+ 'user-logo'"
+              [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" alt="user logo"
+              style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
+          </ng-template>
+        </div>
+
+        <div class="col-md-11 d-flex justify-content-center p-0 m-0">
+          <input style="background-color: #f2f2f2ea; width: 95%; border-radius: 50px 50px 50px 50px; box-shadow: none;"
+            class="form-control input-sm my-2" type="search" placeholder="Que Souhaitez-vous demander ou partager ?"
+            aria-label="Search">
+        </div>
+      </div>
+
+      <!-- ****************************************** -->
+      <div class="row">
+        <div class="col-md-4 d-flex justify-content-center p-0">
+          <a href="" class="btn p-0">
+            <i class="ri-questionnaire-line fs-5 align-middle"></i>
+            Demander
+          </a>
+        </div>
+
+        <div class="col-md-4 d-flex justify-content-center p-0">
+          <a href="" class="btn p-0">
+            <span class="ri-edit-box-line fs-5 align-middle"></span>
+            Répondre
+          </a>
+        </div>
+
+        <div class="col-md-4 d-flex justify-content-center p-0">
+          <a href="" class="btn p-0">
+            <i class="ri-pencil-line fs-5 align-middle"></i>
+            Publier
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="corps2" *ngFor="let publication of utilisateurpublications;">
+
+    <!-- ****************************************** -->
+    <div class="container">
+
+      <!-- ****************************************** -->
+      <div class="row">
+
+        <!-- ========================================== -->
+        <div class="col-md-1 d-flex justify-content-start p-0">
+          <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
+            <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + publication.utilisateur.fichierDB.id : ''"
+              [alt]="publication.utilisateur.fichierDB ? 'image ' + publication.utilisateur.fichierDB.nom : ''"
+              style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
+          </ng-container>
+
+          <ng-template #otherTemplate>
+            <img [src]="'http://localhost:8080/Fichier/'+ 'user-logo'"
+              [alt]="publication.utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" alt="user logo"
+              style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
+          </ng-template>
+        </div>
+
+        <!-- ========================================== -->
+        <div class="col-md-10 p-0 my-2">
+
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-start">
+              <p class="h6 my-0 py-0 bouton"><small>{{ publication.utilisateur.nom }}</small></p> &nbsp;·&nbsp;
+              <p class="h6 my-0 py-0 bouton" style="color: #2e69ff;"><small>Suivre</small></p>
+            </div>
+            <div class="col-md-12 d-flex justify-content-start">
+              <small>{{ publication.publication.date | date:'EEEE d MMMM yyyy' }}</small>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ****************************************** -->
+      <div class="row">
+
+        <!-- ========================================== -->
+        <div class="col-md-12 d-flex justify-content-start p-0 my-2 mx-2">
+          <p class="h6 my-0 py-0">{{ publication.publication.nom }}</p>
+        </div>
+
+        <!-- ========================================== -->
+        <div class="col-md-12 d-flex justify-content-center p-0 my-2 mx-2">
+          <img [src]="'http://localhost:8080/Fichier/'+ publication.publication.fichierDB.id"
+            [alt]="'image '+publication.publication.fichierDB.nom" width="500px" alt="question">
+        </div>
+
+        <!-- ========================================== -->
+        <div class="col-md-12 d-flex justify-content-start p-0 my-2 mx-2">
+          <i class="h6 my-0 py-0">{{ publication.publication.description }}</i>
+        </div>
+
+      </div>
+
+      <!-- ****************************************** -->
+      <div class="row">
+
+        <!-- ========================================== -->
+        <div class="col-md-4 d-flex justify-content-start p-0 py-2 px-2 my-2">
+          <a class="p-2 " id="ajouter-avant">
+            <img src="../../../assets/images/up-arrow.png" alt="positif"> <small class="mx-2">Vote positif
+              &nbsp;·&nbsp; {{ publication.publication.likes }} k</small>
+          </a>
+
+          <a class="p-2" id="ajouter-apres">
+            <img src="../../../assets/images/down-arrow.png" alt="negatif">
+          </a>
+        </div>
+
+        <!-- ========================================== -->
+        <div class="col-md-4 d-flex justify-content-start p-0 py-2 px-2 my-2">
+          <i class="ri-chat-3-line fs-4 bouton"></i> &nbsp; <small class="my-auto">9</small> &nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="ri-refresh-line fs-4 bouton"></i> &nbsp; <small class="my-auto">6</small>
+        </div>
+
+        <!-- ========================================== -->
+        <div class="col-md-4 d-flex justify-content-end p-0 py-2 px-2 my-2">
+          <i class="ri-more-fill fs-4 mx-2 bouton"></i>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <pre>{{ utilisateur | json }}</pre> -->
+  <!-- <pre>{{ utilisateurquestions | json }}</pre> -->
+
+</div>

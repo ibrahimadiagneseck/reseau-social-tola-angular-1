@@ -1,0 +1,110 @@
+<div class="arriere-plan">
+
+  <div class="container cadre d-flex align-items-center">
+
+    <!-- ******************************************* -->
+    <div class="row bg-secondary w-100">
+
+      <!-- ==================================================== -->
+      <div class="col-md-12 d-flex justify-content-center mt-3">
+        <span class="text-primary" id="logo">Tola</span>
+      </div>
+
+      <!-- ==================================================== -->
+      <div class="col-md-12 d-flex justify-content-center">
+        <span class="h6">Un lieu pour partager le savoir et mieux comprendre votre discipline</span>
+      </div>
+
+      <!-- ==================================================== -->
+      <div class="gauche col-md-6 d-flex justify-content-center mt-3 px-3 mb-4">
+
+        <!-- --------------------------------------------------------- -->
+        <div class="row w-100">
+
+          <!-- --------------------------------------------------------- -->
+          <div class="col-md-12">
+            <small>En continuant, vous reconnaissez avoir accepté les <a href="" class="lien-confidentialite">Conditions
+                d'utilisation</a> et la <a href="" class="lien-confidentialite">Politique de confidentialité</a> de
+              Tola.</small>
+          </div>
+
+          <!-- --------------------------------------------------------- -->
+          <div class="col-md-12 d-grid">
+            <button type="button" class="d-flex btn btn-outline-light text-dark w-100 mt-2"><img
+                src="../../assets/images/google.png" alt="google"> &nbsp;&nbsp; Continuer avec Google</button>
+            <button type="button" class="d-flex btn btn-outline-light text-dark w-100 mt-2"><img
+                src="../../assets/images/facebook.png" alt="facebook"> &nbsp;&nbsp; Continuer avec Facebook</button>
+            <button (click)="openDialogInscription()" type="button" class="d-flex btn btn-outline-secondary text-dark w-100 mt-2">S'inscrire avec votre
+              adresse e-mail</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==================================================== -->
+      <div class="droite col-md-6 d-flex justify-content-center mt-3 px-3 mb-4">
+
+        <!-- --------------------------------------------------------- -->
+        <div class="row w-100">
+
+          <!-- --------------------------------------------------------- -->
+          <div class="col-md-12 d-block">
+            <span class="h6 float-left">Se connecte</span>
+            <hr>
+          </div>
+
+          <!-- --------------------------------------------------------- -->
+          <form class="col-md-12 d-grid gap-3" novalidate (ngSubmit)="onSubmit()" [formGroup]="connexionForm">
+
+            <div class="form-group d-grid gap-1">
+              <label for="foremail">E-mail</label>
+              <input formControlName="email" [ngClass]="{'is-invalid': (connexionForm.get('email')?.touched ||
+                connexionForm.get('email')?.dirty) &&
+                !connexionForm.get('email')?.valid, 'is-valid': connexionForm.get('email')?.valid}"
+                type="email" class="form-control" id="foremail" aria-describedby="emailHelp"
+                placeholder="Votre e-mail">
+                <div class="invalid-feedback">
+                  <!-- <span *ngIf="inscriptionForm.get('nom')?.errors?.['required']">
+                      nom (Obligatoire)
+                  </span> -->
+                  <span *ngIf="connexionForm.get('email')!.invalid && connexionForm.get('email')!.touched">
+                    <i class="ri-error-warning-line fs-5"></i> L'email est requis.
+                  </span>
+              </div>
+            </div>
+
+            <div class="form-group d-grid gap-1">
+              <label for="forpassword">Mot de passe</label>
+              <input formControlName="motdepasse" [ngClass]="{'is-invalid': (connexionForm.get('motdepasse')?.touched ||
+                connexionForm.get('motdepasse')?.dirty) && !connexionForm.get('motdepasse')?.valid, 'is-valid': connexionForm.get('motdepasse')?.valid}"
+                type="password" class="form-control p-2" id="forpassword" placeholder="Votre mot de passe">
+                <div class="invalid-feedback">
+                  <!-- <span *ngIf="inscriptionForm.get('nom')?.errors?.['required']">
+                      nom (Obligatoire)
+                  </span> -->
+                  <span *ngIf="connexionForm.get('motdepasse')!.invalid && connexionForm.get('motdepasse')!.touched">
+                    <i class="ri-error-warning-line fs-5"></i> L'email est requis.
+                  </span>
+              </div>
+            </div>
+
+
+            <div class="row mt-3">
+              <div class="col-md-12 d-flex justify-content-between">
+                <a href="" class="lien-oublie">Mot de passe oublié ?</a>
+                <button type="submit" class="btn btn-primary rounded-pill">Se connecter</button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>

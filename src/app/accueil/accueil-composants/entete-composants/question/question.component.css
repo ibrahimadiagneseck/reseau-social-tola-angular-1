@@ -1,0 +1,47 @@
+/* ---- le bouton fermer ---- */
+.fermer {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.fermer:hover {
+  border-radius: 40%;
+  background-color: #f2f2f2ea;
+}
+
+/* Ajouter une question et Créer une publication*/
+.question,
+.publication {
+  text-decoration: none;
+  color: black;
+
+}
+
+.question {
+  border-bottom: thick solid #0d95f0;
+}
+
+.question:hover,
+.publication:hover {
+  background-color: #f2f2f2ea;
+  text-decoration: none;
+  color: black;
+
+}
+
+#question {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid black;
+  /* border-bottom: thick double black; */
+}
+
+/* bouton public */
+#public {
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 40px;
+}

@@ -1,0 +1,32 @@
+<section class="menu">
+
+  <!-- le bouton creer un espace -->
+  <a href="" class="btn text-dark rounded">
+    <span class="material-icons fs-3 text-dark my-auto align-middle">add</span>
+    Créer un <br>
+    espace
+  </a>
+
+
+  <!-- la liste des themes -->
+  <span *ngIf="utilisateur && utilisateur.themes">
+    <ul class="theme" *ngFor="let theme of utilisateur.themes;">
+      <li><img [src]="'http://localhost:8080/Fichier/'+ theme.fichierDB.id" [alt]="'image '+theme.nom"> {{ theme.nom }}</li>
+    </ul>
+  </span>
+
+
+  <!-- la liste des liens -->
+  <ul class="lien">
+    <hr>
+    <li>À propos</li>
+    <li>Emplois</li>
+    <li>Conditions</li>
+    <li>Confidentialité</li>
+    <li>Politique d'Utilisation Acceptable</li>
+    <li>Entreprises</li>
+    <li>Presse</li>
+    <li>Vos choix en termes de publicités</li>
+  </ul>
+
+</section>

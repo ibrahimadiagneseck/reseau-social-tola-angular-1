@@ -1,0 +1,79 @@
+/* ---- la partie menu à gauche ---- */
+.menu {
+    position: fixed;
+
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+
+    top: 10%;
+    width: 20%;
+    height: 90%;
+    background-color: #f2f2f2ea;
+}
+
+.menu:hover {
+    overflow: auto;
+    white-space: normal;
+}
+
+.menu a span {
+  background-color: #d8d8d8bb;
+}
+
+
+
+
+/* ---- le bouton creer un espace ---- */
+.menu a {
+  position: relative;
+  text-decoration: none;
+  margin-top: 30px;
+  margin-left: 40%;
+
+  background-color: #D8D8D8;
+}
+
+.menu a:hover {
+  background-color: #d8d8d8bb;
+}
+
+
+
+
+/* ---- la liste des themes ---- */
+ul.theme {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 30%;
+    list-style: none;
+}
+
+ul.theme li {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+ul.theme li:hover {
+    background-color: #d8d8d8bb;
+}
+
+
+
+
+
+/* ---- la liste des themes ---- */
+ul.lien {
+    position: relative;
+    margin-top: 60px;
+    margin-left: 30%;
+    list-style: none;
+}
+
+ul.lien li {
+    cursor: pointer;
+}
+
+ul.lien li:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~material-icons/iconfont/material-icons.css'; 
+
+@import '../node_modules/remixicon/fonts/remixicon.css';
+
+@import './customize-bootstrap.scss'; 
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+
+html, body { height: 100%; }
+body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+    font-family: Italianno;
+    src: url(./assets/css/Italianno-Regular.ttf);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.bouton {
+    cursor: pointer;
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+    width: .6rem;
+    border-radius: .5rem;
+    background-color: hsl(207, 4%, 75%);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: hsl(207, 4%, 65%);
+    border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: hsl(207, 4%, 55%);
+}
+

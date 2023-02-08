@@ -1,0 +1,66 @@
+<div class="container-fluid m-0 p-0">
+
+  <!-- ********************************************* -->
+  <div class="row m-0 p-0">
+
+    <!-- ================================================== -->
+    <div class="col-md-12">
+      <a (click)="fermerPopup()" class="fermer"><i class="ri-close-line"></i></a>
+    </div>
+
+    <!-- ================================================== -->
+    <div class="col-md-12">
+      <h5>S'inscrire</h5>
+    </div>
+
+  </div>
+  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="verificationForm">
+
+    <!-- ----------------------------------------------------------- -->
+    <div class="form-group col-md-12 mt-3 px-0">
+
+      <div class="row m-0 p-0">
+        <div class="col-md-12">
+          <label for="forpassword">Entrez le mot de passe envoyé</label>
+        </div>
+
+        <div class="col-md-12">
+          <input formControlName="motdepasse" [ngClass]="{'is-invalid': (verificationForm.get('motdepasse')?.touched ||
+                verificationForm.get('motdepasse')?.dirty) &&
+                !verificationForm.get('motdepasse')?.valid, 'is-valid': verificationForm.get('motdepasse')?.valid}"
+            type="password" name="motdepasse" class="form-control" id="forpassword" aria-describedby="passwordHelp"
+            placeholder="Quel est le mot de passe ?">
+
+          <div class="invalid-feedback">
+            <!-- <span *ngIf="inscriptionForm.get('nom')?.errors?.['required']">
+                    nom (Obligatoire)
+                </span> -->
+            <span *ngIf="verificationForm.get('motdepasse')!.invalid && verificationForm.get('motdepasse')!.touched">
+              <i class="ri-error-warning-line fs-5"></i> Le mot de passe est requis.
+            </span>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ----------------------------------------------------------- -->
+    <div class="col-md-12 mt-5 mb-3">
+
+      <div class="row m-0 p-0">
+        <hr>
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit" [disabled]="verificationForm.invalid"
+            class="btn btn-primary rounded-pill">Suivant</button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+
+
+</div>

@@ -1,0 +1,11 @@
+/* ---- le bouton fermer ---- */
+.fermer {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.fermer:hover {
+  border-radius: 40%;
+  background-color: #f2f2f2ea;
+}

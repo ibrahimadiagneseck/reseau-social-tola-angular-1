@@ -1,0 +1,89 @@
+/* ---- arriere plan : image de font ---- */
+.arriere-plan {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/images/ecole.jpeg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+
+/* ---- cadre centré au milieu ---- */
+.cadre {
+  position: relative;
+  height: 100%;
+  width: 55%
+}
+
+
+
+/* ---- style du logo tola ---- */
+#logo{
+  font-family: 'Italianno', cursive;
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+
+
+/* style des liens de confidentialité ---- */
+.lien-confidentialite {
+  text-decoration: none;
+  color: rgb(25, 95, 170);
+}
+
+.lien-confidentialite:hover {
+  text-decoration: underline;
+}
+
+
+
+
+/* style des liens du mot de passe oublié ---- */
+.lien-oublie {
+  text-decoration: none;
+  color: black;
+}
+
+.lien-oublie:hover {
+  text-decoration: underline;
+}
+
+
+
+
+/* ---- les boutons google et facebook au survole de la souris ---- */
+.btn-outline-light:hover {
+  background: transparent;
+  background-color: rgb(231, 231, 231);
+}
+
+
+
+
+/* ---- les boutons S'inscrire avec votre adresse e-mail au survole de la souris ---- */
+.btn-outline-secondary:hover {
+  background: transparent;
+  background-color: rgb(231, 231, 231);
+  border-radius: 50px 50px 50px 50px;
+}
+
+
+
+
+/* bordure entre les deux div gauche et doite */
+.gauche {
+  border-right: 1px solid rgb(170, 166, 166);
+}
+
+.droite {
+  border-left: 1px solid rgb(170, 166, 166);
+}
+
+

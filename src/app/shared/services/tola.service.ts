@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IPublication } from '../models/publication';
+import { IQuestion } from '../models/question';
 import { ITheme } from '../models/theme';
 import { IUtilisateur } from '../models/utilisateur';
 
@@ -44,12 +46,58 @@ export class TolaService {
     return this.httpClient.get<IUtilisateur>(`${this.urlServeur}/UtilisateurById/${idUtilisateur}`);
   }
 
+  //  CRUD QUESTION
+  public getQuestions():Observable<IQuestion[]> {
+    return this.httpClient.get<IQuestion[]>(this.urlServeur+"/Questions");
+  }
 
+  public postQuestion(question: IQuestion): Observable<IQuestion> {
+    return this.httpClient.post<IQuestion>(`${this.urlServeur}/AjouterQuestion`, question);
+  }
+
+  public putQuestion(question: IQuestion, idquestion: number): Observable<IQuestion> {
+    return this.httpClient.put<IQuestion>(`${this.urlServeur}/ModifierQuestion/${idquestion}`, question);
+  }
+
+  public deleteQuestion(idquestion: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.urlServeur}/SupprimerQuestion/${idquestion}`);
+  }
+
+  public getQuestionByIdquestion(idquestion: number):Observable<IQuestion> {
+    return this.httpClient.get<IQuestion>(`${this.urlServeur}/QuestionById/${idquestion}`);
+  }
+
+
+  //  CRUD Publication
+  public getPublications():Observable<IPublication[]> {
+    return this.httpClient.get<IPublication[]>(this.urlServeur+"/Publications");
+  }
+
+  public postPublication(Publication: IPublication): Observable<IPublication> {
+    return this.httpClient.post<IPublication>(`${this.urlServeur}/AjouterPublication`, Publication);
+  }
+
+  public putPublication(Publication: IPublication, idPublication: number): Observable<IPublication> {
+    return this.httpClient.put<IPublication>(`${this.urlServeur}/ModifierPublication/${idPublication}`, Publication);
+  }
+
+  public deletePublication(idPublication: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.urlServeur}/SupprimerPublication/${idPublication}`);
+  }
+
+  public getPublicationByIdPublication(idPublication: number):Observable<IPublication> {
+    return this.httpClient.get<IPublication>(`${this.urlServeur}/PublicationById/${idPublication}`);
+  }
 
 
   //  recuperer toutes les publications des utilisateurs
   public getUtilisateurPublications():Observable<any[]> {
     return this.httpClient.get<any>(this.urlServeur+"/UtilisateurPublications");
+  }
+
+  //  recuperer toutes les questions des utilisateurs
+  public getUtilisateurQuestions():Observable<any[]> {
+    return this.httpClient.get<any>(this.urlServeur+"/UtilisateurQuestions");
   }
 
 
@@ -62,6 +110,11 @@ export class TolaService {
   // affecter un theme à un utilisateur
   public AjouterUtilisateurThemeById(idUtilisateur: number, idTheme: number): Observable<void> {
     return this.httpClient.post<void>(`${this.urlServeur}/AjouterUtilisateurThemeById/${idUtilisateur}/${idTheme}`, null);
+  }
+
+  // affecter une question à un utilisateur
+  public AjouterUtilisateurQuestionById(idUtilisateur: number, idQuestion: number): Observable<void> {
+    return this.httpClient.post<void>(`${this.urlServeur}/AjouterUtilisateurQuestionById/${idUtilisateur}/${idQuestion}`, null);
   }
 
 

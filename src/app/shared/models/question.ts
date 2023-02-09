@@ -1,6 +1,6 @@
 export interface IQuestion {
 
   idquestion: number;
-  nom: string;
+  description: string;
   reponses: any;
 }

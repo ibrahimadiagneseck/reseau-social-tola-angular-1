@@ -148,7 +148,21 @@
     </div>
   </div>
 
+
+  <span *ngIf="utilisateurquestions">
+    <div class="card mt-3" style="width: 670px;" *ngFor="let question of utilisateurquestions;">
+          <div class="card-body">
+        <h5 class="card-title">{{ question.question.description }}</h5>
+      </div>
+    </div>
+  </span>
+
+
   <!-- <pre>{{ utilisateur | json }}</pre> -->
   <!-- <pre>{{ utilisateurquestions | json }}</pre> -->
 
 </div>
+
+
+
+

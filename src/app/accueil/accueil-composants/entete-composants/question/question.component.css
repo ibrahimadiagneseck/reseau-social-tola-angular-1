@@ -18,7 +18,11 @@
 
 }
 
-.question {
+.afficherFormulaire1 {
+  border-bottom: thick solid #0d95f0;
+}
+
+.afficherFormulaire2 {
   border-bottom: thick solid #0d95f0;
 }
 

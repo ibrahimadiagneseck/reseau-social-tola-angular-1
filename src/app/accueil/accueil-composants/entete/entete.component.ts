@@ -18,7 +18,8 @@ export class EnteteComponent {
 
   openDialogQuestion(utilisateur: IUtilisateur) {
     const dialogRef = this.dialog.open(QuestionComponent, {
-      width:'50%',
+      width:'65%',
+      height:'70%',
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {

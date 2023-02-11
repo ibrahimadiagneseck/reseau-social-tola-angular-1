@@ -15,6 +15,12 @@ import { TolaService } from 'src/app/shared/services/tola.service';
 })
 export class QuestionComponent implements OnInit {
 
+  showForm1:boolean = true; // ajouter une question ou une publication
+  showForm2:boolean = false; // ajouter une question ou une publication
+
+  isClicked1 = true;
+  isClicked2 = false;
+
   utilisateur: IUtilisateur | undefined;
 
   question: IQuestion | undefined;
@@ -74,6 +80,24 @@ export class QuestionComponent implements OnInit {
     setTimeout(() => {
       this.actualiserPage((this.utilisateur)?this.utilisateur.idutilisateur:0);
     }, 500);
+  }
+
+
+  afficherFormulaire1() {
+    this.showForm1 = true;
+    this.showForm2 = false;
+
+    this.isClicked1 = true;
+    this.isClicked2 = false;
+
+  }
+
+  afficherFormulaire2() {
+    this.showForm1 = false;
+    this.showForm2 = true;
+
+    this.isClicked2 = true;
+    this.isClicked1 = false;
   }
 
   fermerPopup(): void {

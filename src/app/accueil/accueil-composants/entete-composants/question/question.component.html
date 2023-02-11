@@ -11,10 +11,12 @@
     <!-- ================================================== -->
     <div class="col-md-12">
       <div class="row p-1">
-        <a type="button" (click)="afficherFormulaire1();" [ngClass]="{'afficherFormulaire1': isClicked1}" class="question col-md-6 btn btn-link">Ajouter une
+        <a type="button" (click)="afficherFormulaire1();" [ngClass]="{'afficherFormulaire1': isClicked1}"
+          class="question col-md-6 btn btn-link">Ajouter une
           question</a>
 
-        <a type="button" (click)="afficherFormulaire2()" [ngClass]="{'afficherFormulaire1': isClicked2}" class="publication col-md-6 btn btn-link">Créer une
+        <a type="button" (click)="afficherFormulaire2()" [ngClass]="{'afficherFormulaire1': isClicked2}"
+          class="publication col-md-6 btn btn-link">Créer une
           publication</a>
       </div>
     </div>
@@ -24,7 +26,8 @@
 
 
   <!-- **************FORMULAIRE 1***************** -->
-  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="questionForm" *ngIf="showForm1" style="height: 80%;">
+  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="questionForm" *ngIf="showForm1"
+    style="height: 80%;">
 
     <div class="form-group col-md-12 mt-3 px-0">
 
@@ -108,16 +111,40 @@
 
 
   <!-- **************FORMULAIRE 2***************** -->
-  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="questionForm" *ngIf="!showForm1" style="height: 80%;">
+  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="questionForm" *ngIf="!showForm1"
+    style="height: 80%;">
 
     <div class="form-group col-md-12 mt-3 px-0">
 
       <div class="row m-0 p-0">
         <div class="col-md-12">
           <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
-            <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.id : ''"
-              [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''"
-              style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
+            <div class="row m-0 p-0">
+              <div class="col-md-1">
+                <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.id : ''"
+                  [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''"
+                  style="width: 3rem; height: 3rem;" class="rounded-circle mx-2 my-2 bouton">
+              </div>
+
+              <div class="col-md-11">
+                <div class="row m-0 p-0">
+                  <div class="col-md-12">
+                    <h6>{{ utilisateur.nom }}</h6>
+                  </div>
+
+                  <div class="col-md-12">
+                    <a class="p-1" type="button" id="public">
+                      <mat-icon class="align-middle">supervised_user_circle</mat-icon>
+                      Connaissance : Anglais
+                      <mat-icon class="align-middle" aria-hidden="false" aria-label="Example keyboard_arrow_down icon"
+                        fontIcon="keyboard_arrow_down"></mat-icon>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </ng-container>
 
           <ng-template #otherTemplate>
@@ -126,25 +153,20 @@
               style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
           </ng-template>
 
-          <i class="ri-arrow-right-s-fill fs-3  align-middle"></i>
 
-          <a class="p-1" type="button" id="public">
-            <mat-icon class="align-middle">supervised_user_circle</mat-icon>
-            Public
-            <mat-icon class="align-middle" aria-hidden="false" aria-label="Example keyboard_arrow_down icon"
-              fontIcon="keyboard_arrow_down"></mat-icon>
-          </a>
         </div>
       </div>
 
       <div class="row m-0 p-0 mt-3">
 
         <div class="col-md-12">
-          <input formControlName="nom" type="text" name="nom" class="form-control" id="nom" formControlName="nom"
+          <!-- <input formControlName="nom" type="text" name="nom" class="form-control" id="nom" formControlName="nom"
             [ngClass]="{'is-invalid': (questionForm.get('nom')?.touched ||
           questionForm.get('nom')?.dirty) && !questionForm.get('nom')?.valid, 'is-valid': questionForm.get('nom')?.valid}"
             aria-describedby="nomHelp"
-            placeholder="Commencez votre question par « Que », « Comment », « Pourquoi », etc.">
+            placeholder="Commencez votre question par « Que », « Comment », « Pourquoi », etc."> -->
+
+          <textarea name="description" id="description" rows="7" placeholder="Dites quelque chose..." style="width: 100%; border: none;"></textarea>
 
           <div class="invalid-feedback">
             <span *ngIf="questionForm.get('nom')!.invalid && questionForm.get('nom')!.touched">
@@ -163,10 +185,11 @@
 
       <div class="row m-0 p-0">
         <hr>
+        <div class="col-md-12 d-flex justify-content-start">
+          <button type="submit" class="btn btn-primary rounded-pill">Publier</button>
+        </div>
         <div class="col-md-12 d-flex justify-content-end">
-          <button (click)="fermerPopup()" type="button" class="btn rounded-pill"
-            style="border: 1px solid black; margin-right: 10px;">Annuler</button>
-          <button type="submit" class="btn btn-primary rounded-pill">Ajouter une question</button>
+          <button type="submit" class="btn btn-primary rounded-pill">Publier</button>
         </div>
       </div>
 

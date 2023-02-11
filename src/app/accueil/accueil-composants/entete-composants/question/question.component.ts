@@ -70,7 +70,10 @@ export class QuestionComponent implements OnInit {
   onSubmit(): void {
     console.log(this.questionForm.value);
     this.ajouterQuestion((this.utilisateur)?this.utilisateur.idutilisateur:0);
-    // this.fermerPopup();
+    this.fermerPopup();
+    setTimeout(() => {
+      this.actualiserPage((this.utilisateur)?this.utilisateur.idutilisateur:0);
+    }, 500);
   }
 
   fermerPopup(): void {

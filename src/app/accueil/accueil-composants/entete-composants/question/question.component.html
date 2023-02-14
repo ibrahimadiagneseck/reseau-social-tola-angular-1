@@ -26,7 +26,7 @@
 
 
   <!-- **************FORMULAIRE 1***************** -->
-  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="questionForm" *ngIf="showForm1"
+  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit1()" [formGroup]="questionForm" *ngIf="showForm1"
     style="height: 80%;">
 
     <div class="form-group col-md-12 mt-3 px-0">
@@ -45,7 +45,7 @@
       <div class="row m-0 p-0">
         <div class="col-md-12">
           <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
-            <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.id : ''"
+            <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.idfichierdb : ''"
               [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''"
               style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
           </ng-container>
@@ -96,7 +96,8 @@
         <div class="col-md-12 d-flex justify-content-end">
           <button (click)="fermerPopup()" type="button" class="btn rounded-pill"
             style="border: 1px solid black; margin-right: 10px;">Annuler</button>
-          <button type="submit" class="btn btn-primary rounded-pill">Ajouter une question</button>
+
+          <button type="submit" [disabled]="questionForm.invalid" class="btn btn-primary rounded-pill">Ajouter une question</button>
         </div>
       </div>
 
@@ -111,7 +112,7 @@
 
 
   <!-- **************FORMULAIRE 2***************** -->
-  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="questionForm" *ngIf="!showForm1"
+  <form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit2()" [formGroup]="publicationForm" *ngIf="!showForm1"
     style="height: 80%;">
 
     <div class="form-group col-md-12 mt-3 px-0">
@@ -121,7 +122,7 @@
           <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
             <div class="row m-0 p-0">
               <div class="col-md-1">
-                <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.id : ''"
+                <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.idfichierdb : ''"
                   [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''"
                   style="width: 3rem; height: 3rem;" class="rounded-circle mx-2 my-2 bouton">
               </div>
@@ -148,9 +149,31 @@
           </ng-container>
 
           <ng-template #otherTemplate>
-            <img [src]="'http://localhost:8080/Fichier/'+ 'user-logo'"
-              [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" alt="user logo"
-              style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
+            <div class="row m-0 p-0">
+              <div class="col-md-1">
+                <img src="http://localhost:8080/Fichier/user-logo"
+                  alt="image user-logo"
+                  style="width: 3rem; height: 3rem;" class="rounded-circle mx-2 my-2 bouton">
+              </div>
+
+              <div class="col-md-11">
+                <div class="row m-0 p-0">
+                  <div class="col-md-12">
+                    <h6>{{ utilisateur.nom }}</h6>
+                  </div>
+
+                  <div class="col-md-12">
+                    <a class="p-1" type="button" id="public">
+                      <mat-icon class="align-middle">supervised_user_circle</mat-icon>
+                      Connaissance : Anglais
+                      <mat-icon class="align-middle" aria-hidden="false" aria-label="Example keyboard_arrow_down icon"
+                        fontIcon="keyboard_arrow_down"></mat-icon>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </ng-template>
 
 
@@ -160,22 +183,15 @@
       <div class="row m-0 p-0 mt-3">
 
         <div class="col-md-12">
-          <!-- <input formControlName="nom" type="text" name="nom" class="form-control" id="nom" formControlName="nom"
-            [ngClass]="{'is-invalid': (questionForm.get('nom')?.touched ||
-          questionForm.get('nom')?.dirty) && !questionForm.get('nom')?.valid, 'is-valid': questionForm.get('nom')?.valid}"
-            aria-describedby="nomHelp"
-            placeholder="Commencez votre question par « Que », « Comment », « Pourquoi », etc."> -->
+          <input formControlName="nom" type="text" name="nom" class="form-control my-1" id="nom" publicationForm="nom"
+            [ngClass]="{'is-invalid': (publicationForm.get('nom')?.touched ||
+            publicationForm.get('nom')?.dirty) && !publicationForm.get('nom')?.valid, 'is-valid': publicationForm.get('nom')?.valid}"
+            aria-describedby="nomHelp" placeholder="Titre de la publication">
 
-          <textarea autofocus name="description" id="description" rows="7" placeholder="Dites quelque chose..."
-          style="width: 100%; border: none; resize: none;"></textarea>
-
-
-          <!-- <div class="invalid-feedback">
-            <span *ngIf="questionForm.get('nom')!.invalid && questionForm.get('nom')!.touched">
-              <i class="ri-error-warning-line fs-5"></i> La question est requis et doit avoir entre 4 et 255 caractères.
-            </span>
-          </div> -->
-
+          <textarea formControlName="description"
+            [ngClass]="{'is-invalid': (publicationForm.get('description')?.touched ||
+            publicationForm.get('description')?.dirty) && !publicationForm.get('description')?.valid,'is-valid': publicationForm.get('description')?.valid}" class="form-control my-2" name="description" id="description" rows="5" placeholder="Dites quelque chose..."
+            style="width: 100%; border: none; resize: none;"></textarea>
 
         </div>
       </div>
@@ -183,15 +199,23 @@
     </div>
 
 
-    <div class="col-md-12 m-0 p-0 mt-5">
+    <div class="col-md-12 m-0 p-0 mt-4">
 
       <div class="row m-0 p-0">
         <hr>
         <div class="col-md-6 d-flex justify-content-start">
-          <button type="submit" class="btn btn-primary rounded-pill">Publier</button>
+          <!-- <button (click)="fileInput.click()">
+            <i class="ri-text"></i>
+          </button>
+          <input type="file" #fileInput (change)="selectFile($event)" style="display: none"> -->
+
+          <input type="file" (change)="selectFile($event)" placeholder="Aa" formControlName="fichier">
+
+          <!-- <button type="button" class="btn fs-2"><i class="ri-image-line"></i></button> -->
         </div>
+
         <div class="col-md-6 d-flex justify-content-end">
-          <button type="submit" class="btn btn-primary rounded-pill">Publier</button>
+          <button type="submit" [disabled]="publicationForm.invalid" class="btn btn-primary rounded-pill"> Publier</button>
         </div>
       </div>
 

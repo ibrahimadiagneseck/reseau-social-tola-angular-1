@@ -45,7 +45,7 @@
           <!-- profil -->
           <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
             <img
-              [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.id : ''"
+              [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.idfichierdb : ''"
               [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" style="width: 2rem; height: 2rem;"
               class="rounded-circle mx-3 bouton">
           </ng-container>

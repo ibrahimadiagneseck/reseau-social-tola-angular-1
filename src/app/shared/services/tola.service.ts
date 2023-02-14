@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPublication } from '../models/publication';
@@ -106,6 +106,16 @@ export class TolaService {
     return this.httpClient.post<IUtilisateur>(this.urlServeur+"/UtilisateurByEmailAndMotdepasse", utilisateur);
   }
 
+  // recuperer un fichier'
+  public getFichierByIdFichier(idFichier: number):Observable<any> {
+    return this.httpClient.get<any>(`${this.urlServeur}/Fichier/${idFichier}`);
+  }
+
+  // recuperer les identifiants d'un fichier'
+  public getFichier(idFichier: number):Observable<any> {
+    return this.httpClient.get<any>(`${this.urlServeur}/FichierById/${idFichier}`);
+  }
+
 
   // affecter un theme à un utilisateur
   public AjouterUtilisateurThemeById(idUtilisateur: number, idTheme: number): Observable<void> {
@@ -117,10 +127,53 @@ export class TolaService {
     return this.httpClient.post<void>(`${this.urlServeur}/AjouterUtilisateurQuestionById/${idUtilisateur}/${idQuestion}`, null);
   }
 
+  // affecter une publication à un utilisateur
+  public AjouterUtilisateurPublicationById(idUtilisateur: number, idPublication: number): Observable<void> {
+    return this.httpClient.post<void>(`${this.urlServeur}/AjouterUtilisateurPublicationById/${idUtilisateur}/${idPublication}`, null);
+  }
+
+  // affecter une publication à une photo
+  public AjouterPublicationFichierdbById(idPublication: number, idfichier: number): Observable<void> {
+    return this.httpClient.post<void>(`${this.urlServeur}/AjouterPublicationFichierdbById/${idPublication}/${idfichier}`, null);
+  }
 
   // recuperer les identifiants de connexion par envoie de mail
   public getUtilisateurByEmailVerification(utilisateur: IUtilisateur):Observable<IUtilisateur> {
     return this.httpClient.post<IUtilisateur>(this.urlServeur+"/EnvoyerMailVerification", utilisateur);
+  }
+
+  // Ajouter un fichier
+  public ajouterFichier(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+
+    formData.append('fichier', file);
+
+    console.log(formData);
+
+
+    const req = new HttpRequest('POST', `${this.urlServeur}/AjouterFichier`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.httpClient.request(req);
+  }
+
+  // Ajouter un fichier en recuperant l'id enregistré
+  public AjouterFichierById(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+
+    formData.append('fichier', file);
+
+    console.log(formData);
+
+
+    const req = new HttpRequest('POST', `${this.urlServeur}/AjouterFichierById`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.httpClient.request(req);
   }
 
 }

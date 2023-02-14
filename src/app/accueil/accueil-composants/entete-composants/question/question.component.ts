@@ -2,7 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IPublication } from 'src/app/shared/models/publication';
 import { IQuestion } from 'src/app/shared/models/question';
 import { IUtilisateur } from 'src/app/shared/models/utilisateur';
 import { TolaService } from 'src/app/shared/services/tola.service';
@@ -15,8 +17,15 @@ import { TolaService } from 'src/app/shared/services/tola.service';
 })
 export class QuestionComponent implements OnInit {
 
-  showForm1:boolean = true; // ajouter une question ou une publication
-  showForm2:boolean = false; // ajouter une question ou une publication
+  // FILE
+  selectedFiles?: FileList;
+  currentFile?: File;
+  fileInfos?: Observable<any>;
+  message = "";
+  // ---------------------
+
+  showForm1: boolean = true; // ajouter une question ou une publication
+  showForm2: boolean = false; // ajouter une question ou une publication
 
   isClicked1 = true;
   isClicked2 = false;
@@ -24,8 +33,11 @@ export class QuestionComponent implements OnInit {
   utilisateur: IUtilisateur | undefined;
 
   question: IQuestion | undefined;
+  publication: IPublication | undefined;
+  fichier: any | undefined;
 
   public questionForm!: FormGroup;
+  public publicationForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +51,6 @@ export class QuestionComponent implements OnInit {
   ajouterQuestion(idutilisateur: number) {
     this.tolaService.postQuestion(this.questionForm.value).subscribe(
       (donnees: IQuestion) => {
-        // Apres ajouter, recuperer l'utilisateur en question
         this.question = donnees;
         console.log(donnees);
 
@@ -58,27 +69,153 @@ export class QuestionComponent implements OnInit {
     );
 
   }
+
+  // ajouter une publication via le formulaire
+  ajouterPublication(idutilisateur: number) {
+
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+
+      if (file) {
+        this.currentFile = file;
+
+        this.tolaService.AjouterFichierById(this.currentFile).subscribe(
+          (event: any) => {
+            console.log((event.body) ? event.body.message : null);
+            const idfichier = (event.body) ? event.body.message : null;
+
+            setTimeout(() => {
+              this.tolaService.getFichier(idfichier).subscribe(
+                (donnee: any) => {
+                  this.fichier = donnee;
+                },
+                (err: any) => {
+                  console.log(err);
+                }
+              );
+            }, 1000);
+
+          },
+          (err: any) => {
+            console.log(err);
+            // this.message = 'Could not upload the file!';
+            this.currentFile = undefined;
+          }
+        );
+
+
+        setTimeout(() => {
+          this.tolaService.postPublication(this.publicationForm.value).subscribe(
+            (donnees: IPublication) => {
+              this.publication = donnees;
+              console.log(donnees);
+
+              this.tolaService.AjouterPublicationFichierdbById(this.publication.idpublication, this.fichier.idfichierdb).subscribe(
+                (donnees: any) => {
+                  console.log(donnees);
+                },
+                erreurs => {
+                  console.log(erreurs);
+                }
+              );
+
+            },
+            erreurs => {
+              console.log(erreurs);
+            }
+          );
+        }, 2000);
+
+        setTimeout(() => {
+          this.tolaService.AjouterUtilisateurPublicationById(idutilisateur, this.publication ? this.publication.idpublication : 0).subscribe(
+            () => {
+              console.log(idutilisateur);
+            },
+            (erreurs: HttpErrorResponse) => {
+              console.log(erreurs);
+            }
+          );
+        }, 3000);
+      }
+
+    }
+
+  }
+
   ngOnInit(): void {
     this.utilisateur = this.data.utilisateur;
 
+    // ---------------------------------
     this.questionForm = this.fb.group({
       nom: ['',
         [
           Validators.required,
           Validators.minLength(4),
-          Validators.maxLength(50)
+          Validators.maxLength(255)
+        ]
+      ]
+    });
+
+    // ---------------------------------
+    this.publicationForm = this.fb.group({
+      nom: ['',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(255)
+        ]
+      ],
+      description: ['',
+        [
+          Validators.required,
+          Validators.minLength(4)
+        ]
+      ],
+      fichier: [this.fichier,
+        [
+          Validators.required
         ]
       ]
     });
   }
 
-  // click sur le bouton validation formulaire
-  onSubmit(): void {
+
+
+  // onFileSelected(event) {
+  //   this.selectedFile = event.target.files[0];
+  // }
+
+  // FILE
+  selectFile(event: any): void {
+    this.selectedFiles = event.target.files;
+  }
+  // ---------------------------
+
+
+
+  // click sur le bouton Ajouter une question formulaire 1
+  onSubmit1(): void {
     console.log(this.questionForm.value);
-    this.ajouterQuestion((this.utilisateur)?this.utilisateur.idutilisateur:0);
+
+    this.ajouterQuestion((this.utilisateur) ? this.utilisateur.idutilisateur : 0);
+
     this.fermerPopup();
+
     setTimeout(() => {
-      this.actualiserPage((this.utilisateur)?this.utilisateur.idutilisateur:0);
+      this.actualiserPage((this.utilisateur) ? this.utilisateur.idutilisateur : 0);
+    }, 500);
+  }
+
+  // click sur le bouton publier formulaire 2
+  onSubmit2(): void {
+    console.log(this.questionForm.value);
+
+    this.ajouterPublication((this.utilisateur) ? this.utilisateur.idutilisateur : 0);
+
+    this.fermerPopup();
+
+    setTimeout(() => {
+      this.actualiserPage((this.utilisateur) ? this.utilisateur.idutilisateur : 0);
     }, 500);
   }
 
@@ -113,5 +250,15 @@ export class QuestionComponent implements OnInit {
       }
     });
   }
+
+  // actualiserPage(idutilisateur: number) {
+  //   const navigationExtras: NavigationExtras = {
+  //     queryParams: { connexion: idutilisateur },
+  //     skipLocationChange: false,
+  //     replaceUrl: true,
+  //     reload: true
+  //   };
+  //   this.router.navigate(['accueil'], navigationExtras);
+  // }
 
 }

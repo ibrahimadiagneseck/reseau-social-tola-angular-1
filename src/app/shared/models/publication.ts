@@ -8,4 +8,5 @@ export interface IPublication {
   dislikes: number;
   fichierDB: any;
   commentaires: any
+
 }

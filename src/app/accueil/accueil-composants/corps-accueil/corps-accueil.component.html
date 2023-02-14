@@ -9,7 +9,7 @@
         <div class="col-md-1 d-flex justify-content-start p-0">
           <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
             <img
-              [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.id : ''"
+              [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + utilisateur.fichierDB.idfichierdb : ''"
               [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" style="width: 2rem; height: 2rem;"
               class="rounded-circle mx-2 my-2 bouton">
           </ng-container>
@@ -67,7 +67,7 @@
         <!-- ========================================== -->
         <div class="col-md-1 d-flex justify-content-start p-0">
           <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
-            <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + publication.utilisateur.fichierDB.id : ''"
+            <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + publication.utilisateur.fichierDB.idfichierdb : ''"
               [alt]="publication.utilisateur.fichierDB ? 'image ' + publication.utilisateur.fichierDB.nom : ''"
               style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
           </ng-container>
@@ -106,7 +106,7 @@
 
         <!-- ========================================== -->
         <div class="col-md-12 d-flex justify-content-center p-0 my-2 mx-2">
-          <img [src]="'http://localhost:8080/Fichier/'+ publication.publication.fichierDB.id"
+          <img [src]="'http://localhost:8080/Fichier/'+ publication.publication.fichierDB.idfichierdb"
             [alt]="'image '+publication.publication.fichierDB.nom" width="500px" alt="question">
         </div>
 

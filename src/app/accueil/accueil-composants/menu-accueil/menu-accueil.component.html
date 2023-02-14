@@ -11,7 +11,7 @@
   <!-- la liste des themes -->
   <span *ngIf="utilisateur && utilisateur.themes">
     <ul class="theme" *ngFor="let theme of utilisateur.themes;">
-      <li><img [src]="'http://localhost:8080/Fichier/'+ theme.fichierDB.id" [alt]="'image '+theme.nom"> {{ theme.nom }}</li>
+      <li><img [src]="'http://localhost:8080/Fichier/'+ theme.fichierDB.idfichierdb" [alt]="'image '+theme.nom"> {{ theme.nom }}</li>
     </ul>
   </span>
 

@@ -50,3 +50,8 @@
   border-radius: 40px;
 }
 
+.image:hover,
+.texte:hover {
+  border: 1px solid #f2f2f29a;
+}
+

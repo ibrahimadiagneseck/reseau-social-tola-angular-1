@@ -12,9 +12,9 @@
       </div>
 
       <!-- =================================================== -->
-      <div class="col-md-3  d-flex justify-content-around p-0 icon_navigation">
+      <div class="col-md-3  d-flex justify-content-around p-0 icon_navigation"  *ngIf="utilisateur">
         <span class="material-icons fs-3 text-primary my-auto bouton">home</span>
-        <i class="ri-file-list-2-line fs-3 text-light my-auto bouton"></i>
+        <i (click)="goToRepondre(utilisateur)" class="ri-file-list-2-line fs-3 text-light my-auto bouton"></i>
         <i class="ri-edit-box-line fs-3 text-light my-auto bouton"></i>
         <span class="material-icons fs-3 text-light my-auto bouton">people_outline</span>
         <span class="material-icons fs-3 text-light my-auto bouton">notifications_none</span>

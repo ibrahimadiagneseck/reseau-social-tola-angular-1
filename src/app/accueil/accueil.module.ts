@@ -11,6 +11,7 @@ import { CorpsAccueilComponent } from './accueil-composants/corps-accueil/corps-
 import { MenuAccueilComponent } from './accueil-composants/menu-accueil/menu-accueil.component';
 import { QuestionComponent } from './accueil-composants/entete-composants/question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RepondreComponent } from './accueil-composants/repondre/repondre.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EnteteComponent,
     CorpsAccueilComponent,
     MenuAccueilComponent,
-    QuestionComponent
+    QuestionComponent,
+    RepondreComponent
   ],
   imports: [
     CommonModule, // ngif ngfor

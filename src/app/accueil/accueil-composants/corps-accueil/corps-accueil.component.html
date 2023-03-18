@@ -152,10 +152,83 @@
   <span *ngIf="utilisateurquestions">
     <div class="card mt-3" style="width: 670px;" *ngFor="let question of utilisateurquestions;">
           <div class="card-body">
-        <h5 class="card-title">{{ question.question.description }}</h5>
+            <p class="fs-3">{{ question.question.description }}</p>
+            <span>{{ (question.question.reponses.length==0)? "pas de réponse":question.question.reponses.length }}.Dernier abonnement le 6 m</span>
+
+            <div class="row">
+
+              <div class="col-md-2 d-flex justify-content-center p-0">
+                <a  class="btn btn-outline-light p-2 rounded-pill">
+                  <span class="ri-edit-box-line fs-5 align-middle"></span>
+                  Répondre
+                </a>
+              </div>
+
+              <div class="col-md-2 d-flex justify-content-center p-0">
+                <a href="" class="btn p-0 text-light">
+                  <span class="fs-5 align-middle"><i class="ri-rss-fill text-light"></i></span>
+
+                 Suivre
+                </a>
+              </div>
+
+
+              <div class="col-md-2 d-flex justify-content-center p-0">
+                <a href="" class="btn p-0 text-light">
+                 <span class="fs-5 align-middle"><i class="ri-scissors-2-fill text-light"></i></span>
+                 Ignorer
+                </a>
+              </div>
+
+
+              <div class="col-md-6 d-flex justify-content-end">
+                <a class="p-2"><img src="../../../assets/images/down-arrow.png" alt="negatif"></a>&nbsp;&nbsp;<i class="ri-more-fill fs-4 mx-2 bouton"></i>
+              </div>
+
+        </div>
+        <hr>
       </div>
     </div>
   </span>
+
+
+  <!-- <div class="col" *ngFor="let question of UtilisateurQuestions;">
+    <p class="fs-3">{{ question.question.nom }}</p>
+    <span>{{ (question.question.reponses.length==0)? "pas de réponse":question.question.reponses.length }}.Dernier abonnement le 6 m</span>
+
+    <div class="row">
+
+      <div class="col-md-2 d-flex justify-content-center p-0">
+        <a  class="btn btn-outline-light p-2 rounded-pill">
+          <span class="ri-edit-box-line fs-5 align-middle"></span>
+          Répondre
+        </a>
+      </div>
+
+      <div class="col-md-2 d-flex justify-content-center p-0">
+        <a href="" class="btn p-0 text-light">
+          <span class="fs-5 align-middle"><i class="ri-rss-fill text-light"></i></span>
+
+         Suivre
+        </a>
+      </div>
+
+
+      <div class="col-md-2 d-flex justify-content-center p-0">
+        <a href="" class="btn p-0 text-light">
+         <span class="fs-5 align-middle"><i class="ri-scissors-2-fill text-light"></i></span>
+         Ignorer
+        </a>
+      </div>
+
+
+      <div class="col-md-6 d-flex justify-content-end">
+        <a class="p-2"><img src="../../../assets/images/down-arrow.png" alt="negatif"></a>&nbsp;&nbsp;<i class="ri-more-fill fs-4 mx-2 bouton"></i>
+      </div>
+
+</div>
+<hr>
+   </div> -->
 
 
   <!-- <pre>{{ utilisateur | json }}</pre> -->

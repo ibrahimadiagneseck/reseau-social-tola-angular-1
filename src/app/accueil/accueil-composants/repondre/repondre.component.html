@@ -1,0 +1,125 @@
+
+<div class="corps">
+
+  <div class="corps1">
+      <div class="container">
+           <div class="row">
+                <div class="col">
+                   <span class="bg-primary mt-2 align-middle"><i class="ri-star-fill text-secondary p-1"></i></span> &nbsp;&nbsp; Questions pour vous
+                   <div class="col" *ngFor="let question of UtilisateurQuestions;">
+                    <p class="fs-3">{{ question.question.description }}</p>
+                    <span>{{ (question.question.reponses.length==0)? "pas de réponse":question.question.reponses.length }}.Dernier abonnement le 6 m</span>
+
+                    <div class="row">
+
+                      <div class="col-md-2 d-flex justify-content-center p-0">
+                        <a  class="btn btn-outline-light p-2 rounded-pill">
+                          <span class="ri-edit-box-line fs-5 align-middle"></span>
+                          Répondre
+                        </a>
+                      </div>
+
+                      <div class="col-md-2 d-flex justify-content-center p-0">
+                        <a href="" class="btn p-0 text-light">
+                          <span class="fs-5 align-middle"><i class="ri-rss-fill text-light"></i></span>
+
+                         Suivre
+                        </a>
+                      </div>
+
+
+                      <div class="col-md-2 d-flex justify-content-center p-0">
+                        <a href="" class="btn p-0 text-light">
+                         <span class="fs-5 align-middle"><i class="ri-scissors-2-fill text-light"></i></span>
+                         Ignorer
+                        </a>
+                      </div>
+
+
+                      <div class="col-md-6 d-flex justify-content-end">
+                        <a class="p-2"><img src="../../../assets/images/down-arrow.png" alt="negatif"></a>&nbsp;&nbsp;<i class="ri-more-fill fs-4 mx-2 bouton"></i>
+                      </div>
+
+                </div>
+                <hr>
+                   </div>
+
+                </div>
+
+
+
+           </div>
+
+
+           <!-- <div class="row">
+
+            <div class="col-md-2 d-flex justify-content-center p-0">
+              <a  class="btn btn-outline-light p-2 rounded-pill">
+                <span class="ri-edit-box-line fs-5 align-middle"></span>
+                Répondre
+              </a>
+            </div>
+
+            <div class="col-md-2 d-flex justify-content-center p-0">
+              <a href="" class="btn p-0 text-light">
+                <span class="fs-5 align-middle"><i class="ri-rss-fill text-light"></i></span>
+
+               Suivre
+              </a>
+            </div>
+
+
+            <div class="col-md-2 d-flex justify-content-center p-0">
+              <a href="" class="btn p-0 text-light">
+               <span class="fs-5 align-middle"><i class="ri-scissors-2-fill text-light"></i></span>
+               Ignorer
+              </a>
+            </div>
+
+
+            <div class="col-md-6 d-flex justify-content-end">
+              <a class="p-2"><img src="../../../assets/images/down-arrow.png" alt="negatif"></a>&nbsp;&nbsp;<i class="ri-more-fill fs-4 mx-2 bouton"></i>
+            </div>
+
+      </div> -->
+      <hr>
+    <!-- <div class="row">
+        <div class="col">
+          <p class="fs-3">est ce que les gens en vie rurale sont plus enclins à adopter des modes de vie durables ?</p>
+           Pas encore de réponse.Dernier abonnement le 6 m
+       </div>
+
+   </div>
+   <div class="row">
+    <div class="col-md-2 d-flex justify-content-center p-0">
+      <a href="" class="btn p-0">
+        <i class="ri-questionnaire-line fs-5 align-middle"></i>
+        Demander
+      </a>
+    </div>
+
+    <div class="col-md-2 d-flex justify-content-center p-0">
+      <a  [routerLink]="['/reponse']" class="btn p-0">
+        <span class="ri-edit-box-line fs-5 align-middle"></span>
+        Répondre
+      </a>
+    </div>
+
+    <div class="col-md-2 d-flex justify-content-center p-0">
+      <a href="" class="btn p-0">
+        <i class="ri-pencil-line fs-5 align-middle"></i>
+        Publier
+      </a>
+    </div>
+
+
+    <div class="col-md-6 d-flex justify-content-end">
+      <a class="p-2"><img src="../../../assets/images/down-arrow.png" alt="negatif"></a>&nbsp;&nbsp;<i class="ri-more-fill fs-4 mx-2 bouton"></i>
+    </div>
+
+</div> -->
+
+
+  </div>
+
+</div>

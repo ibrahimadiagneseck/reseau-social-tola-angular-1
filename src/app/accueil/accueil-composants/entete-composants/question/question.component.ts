@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { NavigationExtras, Router } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IPublication } from 'src/app/shared/models/publication';
 import { IQuestion } from 'src/app/shared/models/question';
@@ -78,30 +78,29 @@ export class QuestionComponent implements OnInit {
 
       if (file) {
         this.currentFile = file;
+        // this.tolaService.AjouterFichierById(this.currentFile).subscribe(
+        //   (event: any) => {
+        //     setTimeout(() => {
+        //       console.log((event.body) ? event.body.message : null);
+        //       const idfichier = (event.body) ? event.body.message : null;
 
-        this.tolaService.AjouterFichierById(this.currentFile).subscribe(
-          (event: any) => {
-            console.log((event.body) ? event.body.message : null);
-            const idfichier = (event.body) ? event.body.message : null;
-
-            setTimeout(() => {
-              this.tolaService.getFichier(idfichier).subscribe(
-                (donnee: any) => {
-                  this.fichier = donnee;
-                },
-                (err: any) => {
-                  console.log(err);
-                }
-              );
-            }, 1000);
-
-          },
-          (err: any) => {
-            console.log(err);
-            // this.message = 'Could not upload the file!';
-            this.currentFile = undefined;
-          }
-        );
+        //       this.tolaService.getFichier(idfichier).subscribe(
+        //         (donnee: any) => {
+        //           this.fichier = donnee;
+        //           console.log(this.fichier);
+        //         },
+        //         (err: any) => {
+        //           console.log(err);
+        //         }
+        //       );
+        //     }, 1000);
+        //   },
+        //   (err: any) => {
+        //     console.log(err);
+        //     // this.message = 'Could not upload the file!';
+        //     // this.currentFile = undefined;
+        //   }
+        // );
 
 
         setTimeout(() => {
@@ -109,22 +108,12 @@ export class QuestionComponent implements OnInit {
             (donnees: IPublication) => {
               this.publication = donnees;
               console.log(donnees);
-
-              this.tolaService.AjouterPublicationFichierdbById(this.publication.idpublication, this.fichier.idfichierdb).subscribe(
-                (donnees: any) => {
-                  console.log(donnees);
-                },
-                erreurs => {
-                  console.log(erreurs);
-                }
-              );
-
             },
             erreurs => {
               console.log(erreurs);
             }
           );
-        }, 2000);
+        }, 1000);
 
         setTimeout(() => {
           this.tolaService.AjouterUtilisateurPublicationById(idutilisateur, this.publication ? this.publication.idpublication : 0).subscribe(
@@ -135,9 +124,22 @@ export class QuestionComponent implements OnInit {
               console.log(erreurs);
             }
           );
-        }, 3000);
-      }
+        }, 2000);
 
+
+
+
+        // setTimeout(() => {
+        //   this.tolaService.AjouterPublicationFichierdbById((this.publication) ? this.publication.idpublication : 0, (this.fichier) ? this.fichier.idfichierdb : 0).subscribe(
+        //     (donnees: any) => {
+        //       console.log(donnees);
+        //     },
+        //     erreurs => {
+        //       console.log(erreurs);
+        //     }
+        //   );
+        // }, 3000);
+      }
     }
 
   }
@@ -172,9 +174,9 @@ export class QuestionComponent implements OnInit {
         ]
       ],
       fichier: [this.fichier,
-        [
-          Validators.required
-        ]
+      [
+        Validators.required
+      ]
       ]
     });
   }
@@ -226,7 +228,6 @@ export class QuestionComponent implements OnInit {
 
     this.isClicked1 = true;
     this.isClicked2 = false;
-
   }
 
   afficherFormulaire2() {

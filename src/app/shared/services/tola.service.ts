@@ -106,7 +106,7 @@ export class TolaService {
     return this.httpClient.post<IUtilisateur>(this.urlServeur+"/UtilisateurByEmailAndMotdepasse", utilisateur);
   }
 
-  // recuperer un fichier'
+  // recuperer un fichier
   public getFichierByIdFichier(idFichier: number):Observable<any> {
     return this.httpClient.get<any>(`${this.urlServeur}/Fichier/${idFichier}`);
   }
@@ -133,7 +133,7 @@ export class TolaService {
   }
 
   // affecter une publication à une photo
-  public AjouterPublicationFichierdbById(idPublication: number, idfichier: number): Observable<void> {
+  public AjouterPublicationFichierdbById(idPublication: number, idfichier: String): Observable<void> {
     return this.httpClient.post<void>(`${this.urlServeur}/AjouterPublicationFichierdbById/${idPublication}/${idfichier}`, null);
   }
 

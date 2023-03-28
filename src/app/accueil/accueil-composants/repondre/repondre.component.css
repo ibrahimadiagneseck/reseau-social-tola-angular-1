@@ -1,0 +1,103 @@
+#logo {
+  font-family: 'Italianno', cursive;
+}
+
+/* ---- Ajouter une question ---- */
+#ajouter-avant {
+  text-decoration: none;
+  border-radius: 50px 0px 0px 50px;
+  cursor: pointer;
+  border-right: 1px solid rgb(153, 15, 11);
+}
+
+#ajouter-apres {
+  text-decoration: none;
+  border-radius: 0px 50px 50px 0px;
+  cursor: pointer;
+}
+
+/* ---- barre entete ---- */
+.entete {
+  position: fixed;
+  width: 100%;
+  height: 10%;
+  background-color: white;
+}
+
+.corps {
+  position: absolute;
+  overflow: auto;
+  top: 10%;
+  width: 80%;
+  height: 90%;
+  left: 20%;
+  background-color: #f2f2f2ea;
+
+}
+
+
+
+/* ---- la partie que souhaitez vous demander ou partager ---- */
+.corps1 {
+  position: relative;
+  margin-top: 2%;
+
+  width: 100%;
+  height: auto;
+
+
+  background-color: white;
+}
+
+.menu {
+  position: fixed;
+
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+
+  top: 10%;
+  width: 20%;
+  height: 90%;
+  background-color: #f2f2f2ea;
+}
+
+.menu:hover {
+  overflow: auto;
+  white-space: normal;
+}
+
+.button{
+
+  border: none;
+
+}
+
+
+.liste{
+  position: relative;
+  margin-top: 20px;
+  margin-left: 30%;
+  list-style: none;
+
+}
+.titre{
+
+  position: relative;
+  margin-top: 20px;
+  margin-left: 30%;
+  list-style: none;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,6 +12,8 @@ import { MenuAccueilComponent } from './accueil-composants/menu-accueil/menu-acc
 import { QuestionComponent } from './accueil-composants/entete-composants/question/question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RepondreComponent } from './accueil-composants/repondre/repondre.component';
+import { PageReponseComponent } from './accueil-composants/page-reponse/page-reponse.component';
+import { ListeReponseComponent } from './accueil-composants/liste-reponse/liste-reponse.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { RepondreComponent } from './accueil-composants/repondre/repondre.compon
     CorpsAccueilComponent,
     MenuAccueilComponent,
     QuestionComponent,
-    RepondreComponent
+    RepondreComponent,
+    PageReponseComponent,
+    ListeReponseComponent
   ],
   imports: [
     CommonModule, // ngif ngfor

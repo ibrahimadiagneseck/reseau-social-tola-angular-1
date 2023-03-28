@@ -1,19 +1,109 @@
+<header class="entete sticky-top">
+
+  <!-- ****************************************** -->
+  <nav class="container-fluid">
+
+    <!-- ****************************************** -->
+    <div class="row">
+
+      <!-- =================================================== -->
+      <div class="col-md-2  d-flex justify-content-end px-3">
+        <p class="fw-bold text-primary display-4 my-auto bouton" id="logo">Tola</p>
+      </div>
+
+      <!-- =================================================== -->
+      <div class="col-md-3  d-flex justify-content-around p-0 icon_navigation">
+        <span class="material-icons fs-3 text-primary my-auto bouton">home</span>
+        <i class="ri-file-list-2-line fs-3 text-light my-auto bouton"></i>
+        <i class="ri-edit-box-line fs-3 text-light my-auto bouton"></i>
+        <span class="material-icons fs-3 text-light my-auto bouton">people_outline</span>
+        <span class="material-icons fs-3 text-light my-auto bouton">notifications_none</span>
+      </div>
+
+      <!-- =================================================== -->
+      <div class="col-md-3  d-flex justify-content-center p-0">
+
+        <div class="row  border border-2 border-light rounded my-auto" style="width: 90%; height: 50%;">
+          <!-- =================================================== -->
+          <div class="col-1 my-auto p-0 m-0 d-flex justify-content-center">
+            <mat-icon class="text-light">search</mat-icon>
+          </div>
+
+          <!-- =================================================== -->
+          <div class="col-11">
+            <input style="border: 0; box-shadow: none; padding: 0;" class="form-control input-sm" type="search"
+              placeholder="Rechercher dans Tola" aria-label="Search">
+          </div>
+
+        </div>
+      </div>
+
+      <!-- =================================================== -->
+      <div class="col-md-4 d-flex justify-content-start p-0">
+        <div class="my-auto py-0">
+
+          <!-- profil -->
+          <ng-container>
+            <img src="../../../assets/images/user-logo.jpg" alt="" style="width: 2rem; height: 2rem;" class="rounded-circle mx-3 bouton">
+          </ng-container>
+
+          <!-- <ng-template #otherTemplate>
+            <img
+              [src]="'http://localhost:8080/Fichier/'+ 'user-logo'"
+              [alt]="utilisateur.fichierDB ? 'image ' + utilisateur.fichierDB.nom : ''" alt="user logo"
+              style="width: 2rem; height: 2rem;" class="rounded-circle mx-3 bouton">
+          </ng-template> -->
+
+          <!-- internet -->
+          <img src="../../../assets/images/globe.png" alt="internet logo" width="10%"
+            class="rounded-circle mx-3 bouton">
+
+          <!-- Ajouter une question -->
+          <a  type="button" class="bg-primary text-secondary p-1" id="ajouter-avant">
+            Ajouter une question
+          </a>
+          <a class="bg-primary text-secondary p-1" type="button" id="ajouter-apres">
+            <!-- <span class="material-icons text-secondary align-middle">keyboard_arrow_down</span> -->
+            <mat-icon class="align-middle" aria-hidden="false" aria-label="Example keyboard_arrow_down icon" fontIcon="keyboard_arrow_down"></mat-icon>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </nav>
+</header>
+
+<section class="menu">
+
+  <h3 class=" fs-4 titre">Questions</h3>
+  <hr>
+  <div class="liste">
+
+    <button  type="button" class="d-flex btn btn-outline-light text-dark w-100 mt-2 button">Questions pour vous</button>
+    <button  type="button" class="d-flex btn btn-outline-light text-dark w-100 mt-2 button">Demandes de réponse</button>
+    <button  type="button" class="d-flex btn btn-outline-light text-dark w-100 mt-2 button">Brouillons</button>
+  </div>
+
+</section>
+
 
 <div class="corps">
 
   <div class="corps1">
-      <div class="container">
+      <div class="container" >
            <div class="row">
                 <div class="col">
                    <span class="bg-primary mt-2 align-middle"><i class="ri-star-fill text-secondary p-1"></i></span> &nbsp;&nbsp; Questions pour vous
                    <div class="col" *ngFor="let question of UtilisateurQuestions;">
                     <p class="fs-3">{{ question.question.description }}</p>
-                    <span>{{ (question.question.reponses.length==0)? "pas de réponse":question.question.reponses.length }}.Dernier abonnement le 6 m</span>
+                    <a style="cursor: pointer;" (click)="openListeReponse(question.question.reponses)"><span>{{ (question.question.reponses.length==0)? "pas de réponse":question.question.reponses.length }}.Dernier abonnement le 6 m</span></a>
 
                     <div class="row">
 
                       <div class="col-md-2 d-flex justify-content-center p-0">
-                        <a  class="btn btn-outline-light p-2 rounded-pill">
+                        <a  (click)="openDialogPageReponse(question.question)" class="btn btn-outline-light p-2 rounded-pill">
                           <span class="ri-edit-box-line fs-5 align-middle"></span>
                           Répondre
                         </a>
@@ -123,3 +213,7 @@
   </div>
 
 </div>
+
+
+
+

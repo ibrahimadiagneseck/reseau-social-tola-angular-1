@@ -1,0 +1,103 @@
+<form class="row m-0 p-0" novalidate (ngSubmit)="onSubmit()" [formGroup]="reponseForm"
+    style="height: 80%;">
+
+    <div class="form-group col-md-12 mt-3 px-0">
+
+      <div class="row m-0 p-0">
+        <div class="col-md-12">
+          <ng-container>
+            <div class="row m-0 p-0">
+              <!-- <div class="col-md-1">
+                <img
+                  style="width: 3rem; height: 3rem;" class="rounded-circle mx-2 my-2 bouton">
+              </div> -->
+
+              <div class="col-md-11">
+                <div class="row m-0 p-0">
+                  <div class="col-md-12">
+                    <h6></h6>
+                  </div>
+                  <div class="col-md-12">
+                    <a type="button" (click)="fermerPopup()" class="fermer"><i class="ri-close-line"></i></a>
+                  </div>
+
+                  <span class="col-md-12"> <img src="../../../assets/images/user-logo.jpg" alt="" style="width: 2rem; height: 2rem;" class="rounded-circle mx-3 bouton">Repondez-vous à la question</span>
+                  <div class="col-md-12 mt-2">
+
+                    <a  type="button" class="bg-light border-dark text-dark p-1 rounded-pill mx-3" id="ajouter-avant" id="ajouter-apres">
+                      Connaissance : Anglais
+                      <mat-icon class="align-middle" aria-hidden="false" aria-label="Example keyboard_arrow_down icon" fontIcon="keyboard_arrow_down"></mat-icon>
+                    </a>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </ng-container>
+
+          <ng-template #otherTemplate>
+            <div class="row m-0 p-0">
+              <div class="col-md-1">
+                <img src="http://localhost:8080/Fichier/user-logo"
+                  alt="image user-logo"
+                  style="width: 3rem; height: 3rem;" class="rounded-circle mx-2 my-2 bouton">
+              </div>
+
+              <div class="col-md-11">
+                <div class="row m-0 p-0">
+                  <div class="col-md-12">
+                    <h6></h6>
+                  </div>
+
+                  <div class="col-md-12">
+                    <a class="p-1" type="button" id="public">
+                      <mat-icon class="align-middle">supervised_user_circle</mat-icon>
+                      Connaissance : Anglais
+                      <mat-icon class="align-middle" aria-hidden="false" aria-label="Example keyboard_arrow_down icon"
+                        fontIcon="keyboard_arrow_down"></mat-icon>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </ng-template>
+
+
+        </div>
+      </div>
+
+      <div class="row m-0 p-0 mt-3">
+
+        <div class="col-md-12">
+          <h3>{{ question?.description }}</h3>
+
+          <textarea  formControlName="description"
+          [ngClass]="{'is-invalid': (reponseForm.get('description')?.touched ||
+          reponseForm.get('description')?.dirty) && !reponseForm.get('description')?.valid,'is-valid': reponseForm.get('description')?.valid}"
+           class="form-control my-2" name="description" id="description" rows="5" placeholder="Ecrivez votre réponse"
+            style="width: 100%; border: none; resize: none;">
+        </textarea>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-12 m-0 p-0 mt-4">
+
+      <div class="row m-0 p-0">
+        <hr>
+
+
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit"  class="btn btn-primary rounded-pill"> Publier</button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>

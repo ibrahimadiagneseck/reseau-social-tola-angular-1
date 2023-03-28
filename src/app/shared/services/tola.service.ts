@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPublication } from '../models/publication';
 import { IQuestion } from '../models/question';
+import { IReponse } from '../models/reponse';
 import { ITheme } from '../models/theme';
 import { IUtilisateur } from '../models/utilisateur';
 
@@ -174,6 +175,16 @@ export class TolaService {
     });
 
     return this.httpClient.request(req);
+  }
+
+
+  public postReponse(reponse: IReponse): Observable<IReponse> {
+    return this.httpClient.post<IReponse>(`${this.urlServeur}/AjouterReponse`, reponse);
+  }
+
+  // affecter une reponse à un question
+  public AjouterQuestionReponseById(idQuestion: number, idReponse: number): Observable<void> {
+    return this.httpClient.post<void>(`${this.urlServeur}/AjouterQuestionReponseById/${idQuestion}/${idReponse}`, null);
   }
 
 }

@@ -57,7 +57,8 @@ export class VerificationComponent implements OnInit {
 
   openDialogTheme(utilisateur: IUtilisateur) {
     const dialogRef = this.dialog.open(ThemeComponent, {
-      width:'50%',
+      height:'95%',
+      width:'90%',
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {

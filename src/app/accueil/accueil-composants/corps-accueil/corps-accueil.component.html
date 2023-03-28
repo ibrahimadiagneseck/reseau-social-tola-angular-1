@@ -66,8 +66,8 @@
 
         <!-- ========================================== -->
         <div class="col-md-1 d-flex justify-content-start p-0">
-          <ng-container *ngIf="utilisateur.fichierDB; else otherTemplate">
-            <img [src]="utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + publication.utilisateur.fichierDB.idfichierdb : ''"
+          <ng-container *ngIf="publication.utilisateur.fichierDB; else otherTemplate">
+            <img [src]="publication.utilisateur.fichierDB ? 'http://localhost:8080/Fichier/' + publication.utilisateur.fichierDB.idfichierdb : ''"
               [alt]="publication.utilisateur.fichierDB ? 'image ' + publication.utilisateur.fichierDB.nom : ''"
               style="width: 2rem; height: 2rem;" class="rounded-circle mx-2 my-2 bouton">
           </ng-container>

@@ -22,6 +22,7 @@ export class QuestionComponent implements OnInit {
   currentFile?: File;
   fileInfos?: Observable<any>;
   message = "";
+  idFichierDB: String = "";
   // ---------------------
 
   showForm1: boolean = true; // ajouter une question ou une publication
@@ -78,29 +79,32 @@ export class QuestionComponent implements OnInit {
 
       if (file) {
         this.currentFile = file;
-        // this.tolaService.AjouterFichierById(this.currentFile).subscribe(
-        //   (event: any) => {
-        //     setTimeout(() => {
-        //       console.log((event.body) ? event.body.message : null);
-        //       const idfichier = (event.body) ? event.body.message : null;
+        this.tolaService.AjouterFichierById(this.currentFile).subscribe(
+          (event: any) => {
+              console.log((event.body) ? event.body.message : null);
+              const idfichier = (event.body) ? event.body.message : null;
 
-        //       this.tolaService.getFichier(idfichier).subscribe(
-        //         (donnee: any) => {
-        //           this.fichier = donnee;
-        //           console.log(this.fichier);
-        //         },
-        //         (err: any) => {
-        //           console.log(err);
-        //         }
-        //       );
-        //     }, 1000);
-        //   },
-        //   (err: any) => {
-        //     console.log(err);
-        //     // this.message = 'Could not upload the file!';
-        //     // this.currentFile = undefined;
-        //   }
-        // );
+              this.tolaService.getFichier(idfichier).subscribe(
+                (donnee: any) => {
+                  this.fichier = donnee;
+                  if (this.fichier) {
+                    this.idFichierDB = this.fichier.idfichierdb;
+                    console.log(this.fichier);
+                    console.log(this.fichier.idfichierdb);
+                  }
+
+                },
+                (err: any) => {
+                  console.log(err);
+                }
+              );
+          },
+          (err: any) => {
+            console.log(err);
+            // this.message = 'Could not upload the file!';
+            // this.currentFile = undefined;
+          }
+        );
 
 
         setTimeout(() => {
@@ -129,16 +133,16 @@ export class QuestionComponent implements OnInit {
 
 
 
-        // setTimeout(() => {
-        //   this.tolaService.AjouterPublicationFichierdbById((this.publication) ? this.publication.idpublication : 0, (this.fichier) ? this.fichier.idfichierdb : 0).subscribe(
-        //     (donnees: any) => {
-        //       console.log(donnees);
-        //     },
-        //     erreurs => {
-        //       console.log(erreurs);
-        //     }
-        //   );
-        // }, 3000);
+        setTimeout(() => {
+          this.tolaService.AjouterPublicationFichierdbById((this.publication) ? this.publication.idpublication : 0, this.idFichierDB).subscribe(
+            (donnees: any) => {
+              console.log('AjouterPublicationFichierdbById', donnees);
+            },
+            erreurs => {
+              console.log(erreurs);
+            }
+          );
+        }, 5000);
       }
     }
 
